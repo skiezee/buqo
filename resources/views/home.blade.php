@@ -1,29 +1,138 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="css/home.css">
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Admin</title>
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                Buqo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                </ul>
 
-                    <nav class="navbar navbar-light bg-light">
-                        <a class="navbar-brand">Navbar</a>
-                        <form class="form-inline">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  
+                              <a class="dropdown-item " href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }} 
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
+                          <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </nav>
-                </div>
+                        </form>                        
+                    @endguest
+                </ul>
             </div>
         </div>
+    </nav>
+    <div class="container">
+      <div class="">
+          <div class="">
+              <div class="card mt-4 mb-4">
+                  <div class="card-header d-flex justify-content-between">
+                    {{ __('Dashboard') }} 
+                    <a href="/book/create"><button type="button" class="btn btn-primary">add book</button></a>
+                  </div>
+
+                  <div class="card-body">
+                    <div class="body-card d-flex flex-row justify-content-around mt-4">
+                      @foreach ($books as $index => $book)
+                        <div class="card rounded mt-4" style="width: 16rem;"  >
+                          <div class="text-center mt-2 mb-2">
+                            <h6>{{$book->judul}}</h6>
+                          </div>
+                          <div class="d-flex justify-content-center">                        
+                            <img src="images/demon.jpg" alt="" width="200" class="rounded">
+                          </div>
+                          <div class="card-body m-2">
+                            <a href="#popup1"><button type="button" class="btn btn-success">edit</button></a> 
+                            <a href="#" class="btn btn-warning">delete</a>
+                          </div>
+                        </div> 
+                        @endforeach              
+                    </div>
+                    {{-- POP UP EDIT --}}
+                    <div id="popup1" class="overlay">
+                      <div class="popup">
+                        <h2>Edit Book</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                          <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Judul</label>
+                              <input type="text" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Pengarang</label>
+                              <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Penerbit</label>
+                              <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleFormControlFile1">Gambar Cover</label>
+                              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                            <a href="#"><button type="submit" class="btn btn-primary">Submit</button></a>
+                          </form> 
+                        </div>                           
+                      </div>
+                    </div>
+                    {{-- POP UP EDIT --}}
+                  </div>
+              </div>
+          </div>
+      </div>
+      
     </div>
-</div>
-@endsection
+  </div>
+
+</body>
+</html>
+

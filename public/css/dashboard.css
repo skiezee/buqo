@@ -53,10 +53,13 @@ nav{
 /* menampilkan data */
 .container-read{
     display: flex;
-    flex-direction: row;
-    margin: 32px;
-    justify-content: space-around;
+    flex-wrap: wrap;
 }
 .read-one{
-    margin-top: 5%
+    margin-top: 5%;
+    flex: 1 0 21%;
+}
+
+#font-family{
+    font-family: 'Montserrat';
 }
