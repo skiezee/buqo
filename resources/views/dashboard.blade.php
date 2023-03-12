@@ -76,12 +76,12 @@
       @foreach ($books as $index => $book)
         <div class="card rounded mt-4" style="width: 16rem;"  >
           <div class="d-flex justify-content-center mt-4">                        
-            <img src="images/demon.jpg" alt="" width="200" class="rounded">
+            <img src={{ asset('cover/'. $book-> gambar)}} alt="" width="200" class="rounded">
           </div>
           <div class="card-body m-2">
-            <h4 id="font-family">{{$book->judul}}</h4>
-            <p id="font-family">pengarang: <b>{{$book->pengarang}}</b></p>
-            <p id="font-family">penerbit: <b>{{$book->penerbit}}</b></p>
+            <h4 id="font-family">{{$book-> judul}}</h4>
+            <p id="font-family">pengarang: <b>{{$book-> pengarang}}</b></p>
+            <p id="font-family">penerbit: <b>{{$book-> penerbit}}</b></p>
             <button onclick="exportPdf()" id="font-family">Export to PDF</button>
           </div>
         </div> 

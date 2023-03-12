@@ -18,7 +18,7 @@ class DataBuku extends Migration
             $table->string('judul');
             $table->string('pengarang');
             $table->string('penerbit');
-            // $table->string('gambar');   
+            $table->string('gambar');   
             $table->timestamps();
         });
     }

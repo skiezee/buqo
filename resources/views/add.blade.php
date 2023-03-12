@@ -17,7 +17,7 @@
                     </div>
     
                     <div class="card-body">
-                        <form method="post" action="/book">
+                        <form method="post" action="/add" enctype="multipart/form-data">
                           {{csrf_field()}}
                             <div class="form-group">
                               <label>Judul</label>
@@ -31,10 +31,10 @@
                               <label>Penerbit</label>
                               <input type="text" class="form-control" id="exampleInputPassword1" name="penerbit">
                             </div>
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                               <label for="exampleFormControlFile1">Gambar Cover</label>
-                              <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </div> --}}
+                              <input type="file" class="form-control-file" name="gambar">
+                            </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                           </form>              
                     </div>

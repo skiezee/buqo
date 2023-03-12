@@ -76,7 +76,7 @@
               <div class="card mt-4 mb-4">
                   <div class="card-header d-flex justify-content-between">
                     {{ __('Dashboard') }} 
-                    <a href="/book/create"><button type="button" class="btn btn-primary">add book</button></a>
+                    <a href="/add/create"><button type="button" class="btn btn-primary">add book</button></a>
                   </div>
 
                   <div class="card-body">
@@ -87,7 +87,7 @@
                             <h6>{{$book->judul}}</h6>
                           </div>
                           <div class="d-flex justify-content-center">                        
-                            <img src="images/demon.jpg" alt="" width="200" class="rounded">
+                            <img src={{ asset('cover/'. $book-> gambar)}} alt="" width="200" class="rounded">
                           </div>
                           <div class="card-body m-2">
                             <a href="#popup1"><button type="button" class="btn btn-success">edit</button></a> 
@@ -99,31 +99,33 @@
                     {{-- POP UP EDIT --}}
                     <div id="popup1" class="overlay">
                       <div class="popup">
-                        <h2>Edit Book</h2>
-                        <a class="close" href="#">&times;</a>
-                        <div class="content">
-                          <form>
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Judul</label>
-                              <input type="text" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Pengarang</label>
-                              <input type="text" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Penerbit</label>
-                              <input type="text" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleFormControlFile1">Gambar Cover</label>
-                              <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </div>
-                            <a href="#"><button type="submit" class="btn btn-primary">Submit</button></a>
-                          </form> 
-                        </div>                           
+                          <h2>Edit Book</h2>
+                          <a class="close" href="#">&times;</a>
+                          <div class="content">
+                              <form method="POST" action="{{ route('add.update', $book->id) }}" enctype="multipart/form-data">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail1">Judul</label>
+                                      <input type="text" class="form-control" id="exampleInputEmail1" name="judul" value="{{ $book->judul }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputPassword1">Pengarang</label>
+                                      <input type="text" class="form-control" id="exampleInputPassword1" name="pengarang" value="{{ $book->pengarang }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputPassword1">Penerbit</label>
+                                      <input type="text" class="form-control" id="exampleInputPassword1" name="penerbit" value="{{ $book->penerbit }}">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleFormControlFile1">Gambar Cover</label>
+                                      <input type="file" class="form-control-file" id="exampleFormControlFile1" name="gambar">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Submit</button>
+                              </form>
+                          </div>
                       </div>
-                    </div>
+                  </div>                  
                     {{-- POP UP EDIT --}}
                   </div>
               </div>

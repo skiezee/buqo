@@ -16,7 +16,8 @@ use App\Http\Controllers\BookController;
 
 Route::get('/', [BookController::class, 'index']);
 
-Route::resource('/book', BookController::class);  
+
+  
 
 
 Auth::routes();
@@ -25,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home'); 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+    Route::put('/home/{id}', [App\Http\Controllers\HomeController::class, 'update']);
+    Route::resource('/add', BookController::class);
 });
 
 

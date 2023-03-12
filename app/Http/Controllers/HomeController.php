@@ -38,5 +38,26 @@ class HomeController extends Controller
 
     return view('home', ['books' => $books]);
     }
+    public function edit($id)
+    {
+        $book = Book::find($id);
+        return view('home', ['book' => $book]);
+    }
+    public function update(Request $request, $id)
+    {
+        $book = Book::find($id);
+        $book->judul = $request->input('judul');
+        $book->pengarang = $request->input('pengarang');
+        $book->penerbit = $request->input('penerbit');
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $namaGambar = time() . '_' . $gambar->getClientOriginalName();
+            $lokasiGambar = public_path('uploads');
+            $gambar->move($lokasiGambar, $namaGambar);
+            $book->gambar = $namaGambar;
+        }
+        $book->save();
+        return redirect('/home');
+    }
 
 }
