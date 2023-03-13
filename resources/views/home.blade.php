@@ -93,44 +93,13 @@
                                 @csrf
                                 @method('DELETE')
                                 <div class="card-body m-2">
-                                    <a href="#popup1"><button type="button" class="btn btn-success">edit</button></a>
+                                    <a href="{{route('add.edit',  $book->id)}}"><button type="button" class="btn btn-success">edit</button></a>
                                     <button type="submit" class="btn btn-warning">delete</button>
                                 </div>
                             </form>
                             </div> 
                             @endforeach              
                         </div>
-                        {{-- POP UP EDIT --}}
-                        {{-- <div id="popup1" class="overlay">
-                          <div class="popup">
-                              <h2>Edit Book</h2>
-                              <a class="close" href="#">&times;</a>
-                              <div class="content">
-                                  <form method="POST" action="{{ route('home.update', $book->id) }}" enctype="multipart/form-data">
-                                      @csrf
-                                      @method('PUT')
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1">Judul</label>
-                                          <input type="text" class="form-control" id="exampleInputEmail1" name="judul" value="{{$book->judul}}">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleInputPassword1">Pengarang</label>
-                                          <input type="text" class="form-control" id="exampleInputPassword1" name="pengarang" value="{{$book->pengarang}}">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleInputPassword1">Penerbit</label>
-                                          <input type="text" class="form-control" id="exampleInputPassword1" name="penerbit" value="{{$book->penerbit}}">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleFormControlFile1">Gambar Cover</label>
-                                          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="gambar">
-                                      </div>
-                                      <button type="submit" class="btn btn-primary">Submit</button>
-                                  </form>
-                              </div>
-                          </div>
-                      </div>                   --}}
-                      {{-- POP UP EDIT --}}
                       </div>
                   </div>
               </div>

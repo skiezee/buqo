@@ -64,7 +64,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-    
+        $book = Book::find($id); // Ambil data buku dari database berdasarkan id
+        return view('edit', compact('book')); // Kirim data buku ke view edit.blade.php
     }
 
     /**
@@ -76,7 +77,21 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-    
+        $book = Book::find($id);
+        $book->judul = $request->input('judul');
+        $book->pengarang = $request->input('pengarang');
+        $book->penerbit = $request->input('penerbit');
+
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('cover'), $filename);
+            $book->gambar = $filename;
+        }
+
+        $book->save();
+
+        return redirect('/home')->with('success', 'Buku berhasil diperbarui');
     }
 
 

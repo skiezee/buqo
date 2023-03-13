@@ -17,6 +17,8 @@
         let y = 40;
         @foreach ($books as $index => $book)
         doc.text(20, y, "Judul: {{$book->judul}}");
+        doc.text(20, y, "Judul: {{$book->judul}}");
+        doc.text(20, y, "Judul: {{$book->judul}}");
         doc.text(20, y+10, "Pengarang: {{$book->pengarang}}");
         doc.text(20, y+20, "Penerbit: {{$book->penerbit}}");
         y += 40;

@@ -45,20 +45,6 @@ class HomeController extends Controller
         return view('home', ['book' => $book]);
     }
 
-    public function update(Request $request, $id)
-    {
-        $book = Book::find($id);
-        $book->judul = $request->input('judul');
-        $book->pengarang = $request->input('pengarang');
-        $book->penerbit = $request->input('penerbit');
-        if($request->hasFile('gambar')){
-            $request->file('gambar')->move('cover/', $request->file('gambar')->getClientOriginalName());
-            $book->gambar = $request->file('gambar')->getClientOriginalName();
-            $book->save();
-        }
-        $book->save();
-        return redirect('/home');
-    }
 
     public function destroy($id)
     {

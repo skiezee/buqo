@@ -22,9 +22,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home'); 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
-    Route::put('/home/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('home.update');
     Route::delete('/home/{id}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('home.destroy');
     Route::resource('/add', BookController::class);
+    Route::get('/add/{id}/edit', [BookController::class, 'edit'])->name('add.edit');
+    Route::put('/add/{id}/update', [BookController::class, 'update'])->name('add.update');
+
 });
 
 
