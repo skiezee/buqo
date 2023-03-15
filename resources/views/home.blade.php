@@ -14,6 +14,7 @@
       <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+              <img src="images/book.png"/>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Buqo
                 </a>
@@ -84,12 +85,13 @@
                           @foreach ($books as $index => $book)
                             <div class="card rounded mt-4" style="width: 16rem;"  >
                               <div class="text-center mt-2 mb-2">
+                                <p>{{$index + 1}}</p>
                                 <h6>{{$book->judul}}</h6>
                               </div>
                               <div class="d-flex justify-content-center">                        
                                 <img src={{ asset('cover/'. $book-> gambar)}} alt="" width="200" class="rounded">
                               </div>
-                              <form method="POST" action="{{ route('home.destroy', $book->id) }}">
+                              <form method="POST" action="{{ route('home.destroy', $book->id) }}" onsubmit="return confirm('Tenanan iki dibusek?');">
                                 @csrf
                                 @method('DELETE')
                                 <div class="card-body m-2">

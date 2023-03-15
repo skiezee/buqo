@@ -53,7 +53,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('detail', compact('book'));
     }
 
     /**
@@ -81,6 +82,8 @@ class BookController extends Controller
         $book->judul = $request->input('judul');
         $book->pengarang = $request->input('pengarang');
         $book->penerbit = $request->input('penerbit');
+        $book->category = $request->input('category');
+        $book->deskripsi = $request->input('deskripsi');
 
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');

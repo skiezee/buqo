@@ -60,7 +60,7 @@
   <div class="bg-information">
     <div class="flex flex-col mt-4 mb-4">
       <h1 class="text-5xl text-white font-semibold">1.400 +</h1>
-      <p class="mx-auto text-white text-lg mt-8 text-center">Daftar Buku</p>
+      <p class="mx-auto text-white mt-8 text-center">Daftar Buku</p>
     </div>
     <div class="flex flex-col mt-4 mb-4">
       <h1 class="text-5xl text-white font-semibold">800 +</h1>
@@ -84,7 +84,9 @@
             <h4 id="font-family">{{$book-> judul}}</h4>
             <p id="font-family">pengarang: <b>{{$book-> pengarang}}</b></p>
             <p id="font-family">penerbit: <b>{{$book-> penerbit}}</b></p>
-            <button onclick="exportPdf()" id="font-family">Export to PDF</button>
+            <p id="font-family">category: <b>{{$book-> category}}</b></p>
+            <a href="{{route('add.show', $book->id)}}">View Detail</a>
+            {{-- <button onclick="exportPdf()" id="font-family">Export to PDF</button> --}}
           </div>
         </div> 
         @endforeach              

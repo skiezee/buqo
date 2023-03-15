@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Edit Book</title>
+    <script>
+        function confirmSubmit() {
+          if(confirm("Apakah Anda yakin ingin mengedit data ini?")) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      </script>
 </head>
 <body>
     <div class="container">
@@ -26,17 +35,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Pengarang</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" name="pengarang" value="{{$book->pengarang}}">
+                                <input type="text" class="form-control" id="exampleInputPassword1" required name="pengarang" value="{{$book->pengarang}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Penerbit</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" name="penerbit" value="{{$book->penerbit}}">
+                                <input type="text" class="form-control" id="exampleInputPassword1" required name="penerbit" value="{{$book->penerbit}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Category</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" required name="category" value="{{$book->category}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Deskripsi</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" required name="deskripsi" value="{{$book->deskrips}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlFile1">Gambar Cover</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="gambar">
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1" required name="gambar">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Submit</button>
                         </form>            
                     </div>
                 </div>

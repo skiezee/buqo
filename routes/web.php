@@ -15,6 +15,7 @@ use App\Http\Controllers\BookController;
 */
 
 Route::get('/', [BookController::class, 'index']);
+Route::get('/add/{id}/show', [BookController::class, 'show'])->name('add.show');
 
 Auth::routes();
 
